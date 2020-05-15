@@ -1,9 +1,16 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    <todo-list />
+  </div>
 </template>
 
 <script>
-export default {};
+import TodoList from "../components/TodoList.vue";
+export default {
+  components: {
+    TodoList
+  }
+};
 </script>
 
 <style>
