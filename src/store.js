@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    selected: false,
     todos: [
       {
         name: 'First part of Todo',
@@ -160,7 +161,7 @@ export default new Vuex.Store({
           },
           {
             id: 25,
-            title: 'Find and answer at 3 vacancy in Dou.ua',
+            title: 'Find and answer at 3 vacancy in DOU',
             done: false,
           },
           {
@@ -176,7 +177,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Home',
-        task: [
+        tasks: [
           {
             id: 28,
             title: 'Room cleaning',

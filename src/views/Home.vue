@@ -13,5 +13,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+ul {
+  list-style-type: none;
+}
+.home {
+  background: rgb(240, 239, 239);
+  min-height: 100vh;
+}
 </style>
