@@ -4,8 +4,6 @@
       <li v-for="todo in todos" :key="todo.name">
         <todo :todo="todo" :selcted="selected" />
       </li>
-      <li></li>
-      <li></li>
     </ul>
   </div>
 </template>
@@ -32,8 +30,12 @@ export default {
 
 .todo-list > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-gap: 1.5rem;
   align-items: start;
+  align-content: space-evenly;
+}
+.todo-list > ul > li {
+  height: 100%;
 }
 </style>

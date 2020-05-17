@@ -1,5 +1,5 @@
 <template>
-  <div class="todo" v-if="!selected">
+  <div class="todo" v-if="!selected" :style="style">
     <div class="todo_head" :style="bla">
       <h2>{{todo.name}}</h2>
       <span class="bookmark"></span>
@@ -37,17 +37,45 @@ export default {
         `${!this.selected ? 2 : this.todo.tasks.length}`
       ),
 
-      bla: "background: teal"
+      bla: "background: teal",
+      style: {
+        "--color0": this.todo.colors[0],
+        "--color1": this.todo.colors[1]
+      }
     };
-  },
-  computed: {}
+  }
 };
 </script>
 
 <style lang="scss">
+// ГРАДИЕнт на право
+/* 
+Чтобы получить цвета из пропса:
+  - в template биндим стили :style="style"
+  - в data() уже делаем css-переменные:
+      style: {
+        "--color0": this.todo.colors[0],
+        "--color1": this.todo.colors[1]
+      }
+  - в <style> используем так:
+      background: linear-gradient(var(--color0), var(--color1)) padding-box;
+*/
+
 .todo {
-  border-radius: 0.2rem;
-  background-color: hsl(206, 25%, 64%);
+  border-radius: 0.5rem;
+  background: rgb(140, 166, 186);
   padding: 0.5rem;
+  // height: calc(100% - 2rem);
+  font: 1.2em/ 1.375 trebuchet ms, verdana, sans-serif;
+
+  // for some beautiful
+  border: solid 0.5rem transparent;
+  box-sizing: border-box;
+  background: linear-gradient(#dbdbdb, #fff) content-box,
+    linear-gradient(var(--color0), var(--color1)) padding-box,
+    linear-gradient(#fff, #dcdcdc) border-box;
+}
+.todo_body {
+  // margin-bottom: 1rem;
 }
 </style>

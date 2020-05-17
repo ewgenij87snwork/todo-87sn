@@ -18,7 +18,7 @@ ul {
   list-style-type: none;
 }
 .home {
-  background: rgb(240, 239, 239);
+  background: silver;
   min-height: 100vh;
 }
 </style>
