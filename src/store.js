@@ -13,7 +13,7 @@ export default new Vuex.Store({
         tasks: [
           {
             id: 1,
-            title: 'Make base Todo-Tasks in Store (12)',
+            title: 'Make array of Todos in Store (12)',
             done: false,
           },
           {
