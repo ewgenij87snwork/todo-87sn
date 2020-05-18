@@ -1,6 +1,6 @@
 <template>
   <div class="todo" v-if="!selected" :style="style">
-    <div class="todo_head">
+    <div class="todo_head" :data-pct="todo.category">
       <h2>{{todo.name}}</h2>
       <span class="bookmark"></span>
     </div>
@@ -46,6 +46,9 @@ export default {
         "--color1": this.todo.colors[1]
       }
     };
+  },
+  mounted() {
+    console.log(this.style.category);
   }
 };
 </script>
@@ -64,11 +67,15 @@ export default {
       background: linear-gradient(var(--color0), var(--color1)) padding-box;
 */
 
+/* 
+Category -- как бы "вторая стадия пониманя" -- это условное разделение важности Todo по системе "золото, серебро и бронза". 
+ */
+
 .todo {
   background: rgb(140, 166, 186);
   padding: 0.25rem;
   cursor: pointer;
-  border: dashed 0.25rem transparent;
+  border: solid 0.25rem transparent;
   border-radius: 2rem;
   border-bottom-right-radius: 0px;
   box-sizing: border-box;
@@ -84,18 +91,44 @@ export default {
     linear-gradient(#fff, #dcdcdc) border-box;
 }
 .todo_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
   box-sizing: inherit;
-  border: inherit;
+  border: solid 0.25rem transparent;
   border-radius: 1rem;
-  padding-bottom: 0.25rem;
+  padding: 0.25rem;
   margin: -0.6rem;
-  background: linear-gradient(var(--color0), var(--color1)) padding-box,
-    linear-gradient(#fff, #fff) border-box;
+  background: linear-gradient(#fff, #f1f1f1) content-box,
+    linear-gradient(var(--color0), var(--color1)) padding-box,
+    linear-gradient(#fff, #f1f1f1) border-box;
   text-align: center;
-  color: #fff;
+  color: #18272c;
+  text-indent: 1rem;
   h2 {
     font-weight: 300;
+    margin: 0.1rem;
   }
+}
+.todo_head::before {
+  display: grid;
+  place-content: center;
+  box-sizing: inherit;
+  border: solid 0.25rem transparent;
+  border-radius: 1rem;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: -0.5rem;
+  height: 3rem;
+  width: 3rem;
+  box-shadow: inset 0 0 1px 1px #efefef, inset 0 1rem grba(#000, 0.1);
+  background: linear-gradient(var(--color0), var(--color1)) padding-box,
+    linear-gradient(#f1f1f1, #e7e7e7) border-box;
+  color: #e2e8eb;
+  font-size: 1rem;
+  text-indent: 0;
+  content: attr(data-pct);
 }
 .todo_body {
   line-height: 1.44;

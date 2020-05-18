@@ -10,6 +10,7 @@ export default new Vuex.Store({
       {
         name: 'First part of Todo',
         colors: ['#8a7876', '#32201c'],
+        category: 'I',
         tasks: [
           {
             id: 1,
@@ -35,6 +36,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Second part of Todo',
+        category: 'I',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
@@ -56,6 +58,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Third part of Todo',
+        category: 'I',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
@@ -77,6 +80,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Health',
+        category: 'II',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
@@ -103,6 +107,7 @@ export default new Vuex.Store({
       },
       {
         name: 'VSCode setup',
+        category: 'III',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
@@ -129,6 +134,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Reading',
+        category: 'III',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
@@ -159,6 +165,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Work',
+        category: 'I',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
@@ -184,6 +191,7 @@ export default new Vuex.Store({
       },
       {
         name: 'Home',
+        category: 'III',
         colors: ['#8a7876', '#32201c'],
         tasks: [
           {
