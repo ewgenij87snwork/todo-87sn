@@ -94,18 +94,30 @@ export default {
   }
 }
 .todo_body {
-  line-height: 1.5;
+  line-height: 1.44;
   li {
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border-bottom: 1px solid #ccc;
-    margin-bottom: 0.25rem;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+    position: relative;
   }
   li:first-of-type {
     margin-top: 1rem;
+  }
+  li:first-of-type::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 0;
     border-top: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 1);
   }
   li:last-of-type {
     border-bottom: none;
+    box-shadow: none;
   }
 }
 </style>
