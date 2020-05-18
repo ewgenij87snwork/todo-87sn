@@ -10,6 +10,10 @@
           <task :task="task" />
         </li>
       </ul>
+      <span>
+        <!-- <i class="fal fa-angle-double-down"></i> -->
+        <i class="fas fa-chevron-down"></i>
+      </span>
     </div>
   </div>
 </template>
@@ -63,10 +67,10 @@ export default {
 .todo {
   background: rgb(140, 166, 186);
   padding: 0.25rem;
-  font: trebuchet ms, verdana, sans-serif;
   cursor: pointer;
   border: dashed 0.25rem transparent;
   border-radius: 2rem;
+  border-bottom-right-radius: 0px;
   box-sizing: border-box;
   background: linear-gradient(#fff, #dbdbdb) content-box,
     linear-gradient(var(--color0), var(--color1)) padding-box,
@@ -95,6 +99,7 @@ export default {
 }
 .todo_body {
   line-height: 1.44;
+  position: relative;
   li {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid #ccc;
@@ -118,6 +123,24 @@ export default {
   li:last-of-type {
     border-bottom: none;
     box-shadow: none;
+  }
+  span {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    line-height: 1;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 14px;
+      color: #9a9faf;
+    }
   }
 }
 </style>
