@@ -30,7 +30,7 @@ export default {
 
 .todo-list > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1.5rem;
   align-items: start;
   align-content: space-evenly;

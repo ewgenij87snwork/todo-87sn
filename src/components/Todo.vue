@@ -97,39 +97,63 @@ Category -- как бы "вторая стадия пониманя" -- это �
   position: relative;
   box-sizing: inherit;
   border: solid 0.25rem transparent;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   padding: 0.25rem;
-  margin: -0.6rem;
+  margin: -0.5rem;
   background: linear-gradient(#fff, #f1f1f1) content-box,
     linear-gradient(var(--color0), var(--color1)) padding-box,
-    linear-gradient(#fff, #f1f1f1) border-box;
+    linear-gradient(#fff, #dbdbdb) border-box;
   text-align: center;
   color: #18272c;
   text-indent: 1rem;
+  clip-path: inset(0 round 1.5rem);
   h2 {
     font-weight: 300;
     margin: 0.1rem;
   }
 }
-.todo_head::before {
+.todo_head::after {
+  position: relative;
+  order: -1;
+
   display: grid;
   place-content: center;
   box-sizing: inherit;
-  border: solid 0.25rem transparent;
-  border-radius: 1rem;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border: solid 0.5rem transparent;
+  border-radius: 50%;
   margin: -0.5rem;
-  height: 3rem;
-  width: 3rem;
+  margin-left: -0.25rem;
+  height: 2.5rem;
+  width: 2.5rem;
   box-shadow: inset 0 0 1px 1px #efefef, inset 0 1rem grba(#000, 0.1);
-  background: linear-gradient(var(--color0), var(--color1)) padding-box,
-    linear-gradient(#f1f1f1, #e7e7e7) border-box;
+  background: linear-gradient(var(--color1), var(--color0)) padding-box,
+    linear-gradient(#cecdcd, #fff) border-box;
   color: #e2e8eb;
-  font-size: 1rem;
-  text-indent: 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-indent: 0.05rem;
   content: attr(data-pct);
 }
+.todo_head::before {
+  content: "";
+  position: absolute;
+  left: -0.25rem;
+  top: -0.25rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+  transform: rotate(45deg);
+  box-shadow: 0 0 7px rgba(#000, 0.2);
+  background: linear-gradient(
+    -45deg,
+    transparent calc(50% - 1.5rem),
+    #e4e4e4 0,
+    #fff calc(50% + 1.5rem),
+    transparent 0
+  );
+}
+
 .todo_body {
   line-height: 1.44;
   position: relative;
