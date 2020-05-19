@@ -89,6 +89,13 @@ Category -- как бы "вторая стадия пониманя" -- это �
   background: linear-gradient(#fff, #f1f1f1) content-box,
     linear-gradient(var(--color0), var(--color1)) padding-box,
     linear-gradient(#fff, #dcdcdc) border-box;
+  .todo_body > span > i {
+    font-size: 18px;
+    color: #9a9faf;
+    top: -25%;
+    left: -20%;
+    transform: rotate(-45deg);
+  }
 }
 .todo_head {
   display: flex;
@@ -196,7 +203,8 @@ Category -- как бы "вторая стадия пониманя" -- это �
       left: 50%;
       transform: translate(-50%, -50%) rotate(-45deg);
       font-size: 14px;
-      color: #9a9faf;
+      color: transparent;
+      transition: all 0.3s ease;
     }
   }
 }
