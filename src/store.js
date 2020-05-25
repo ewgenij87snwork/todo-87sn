@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    selected: false,
+    selected: null,
     todos: [
       {
         name: 'First part of Todo',
@@ -218,5 +218,14 @@ export default new Vuex.Store({
     ],
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    selectTodo(state, selected) {
+      state.selected = selected;
+      state.unselect = null;
+    },
+    unselectTodo(state) {
+      state.unselect = state.selected;
+      state.selected = null;
+    },
+  },
 });

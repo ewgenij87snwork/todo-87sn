@@ -2,14 +2,14 @@
   <div class="todo-list">
     <ul>
       <li v-for="todo in todos" :key="todo.name">
-        <todo :todo="todo" :selcted="selected" />
+        <todo :todo="todo" @select="selectTodo" />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import Todo from "./Todo.vue";
 export default {
   components: {
@@ -17,6 +17,9 @@ export default {
   },
   computed: {
     ...mapState(["todos", "selected"])
+  },
+  methods: {
+    ...mapMutations(["selectTodo"])
   }
 };
 </script>

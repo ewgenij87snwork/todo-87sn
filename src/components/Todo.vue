@@ -1,5 +1,5 @@
 <template>
-  <div class="todo" v-if="!selected" :style="style">
+  <div class="todo" :style="style" @click="todoClicked" :class="{ todo__selected: selected}">
     <div class="todo_head" :data-pct="todo.category">
       <h2>{{todo.name}}</h2>
       <span class="bookmark"></span>
@@ -20,6 +20,7 @@
 
 
 <script>
+import { mapState } from "vuex";
 import Task from "./Task.vue";
 export default {
   components: {
@@ -29,26 +30,48 @@ export default {
     todo: {
       type: Object,
       required: true
-    },
-    selected: {
-      type: Boolean
+    }
+  },
+  computed: {
+    ...mapState(["selected"]),
+    todoArr() {
+      return this.selected
+        ? this.todo.tasks.slice(0, this.todo.tasks.length)
+        : this.todo.tasks.slice(0, 2);
     }
   },
   data() {
     return {
-      todoArr: this.todo.tasks.splice(
-        0,
-        `${!this.selected ? 2 : this.todo.tasks.length}`
-      ),
-
       style: {
         "--color0": this.todo.colors[0],
         "--color1": this.todo.colors[1]
       }
     };
   },
-  mounted() {
-    console.log(this.style.category);
+
+  methods: {
+    todoClicked() {
+      const appRect = document.querySelector("#app").getBoundingClientRect();
+      const elRect = this.$el.getBoundingClientRect();
+      const todo = this.todo;
+      const rect = {};
+      rect.top = elRect.top - appRect.top;
+      rect.left = elRect.left - appRect.left;
+      rect.width = elRect.width;
+      rect.height = elRect.height;
+      rect.appWidth = appRect.width;
+      rect.appHeight = appRect.height;
+      this.$emit("select", { rect, todo });
+
+      /* 
+        1. Берем размер окна и размер самой туду
+        2. Если ширина окна больше 980 пх, то расширяем размер туду до (ш980пх - размер боковых кнопок)
+        2.1 Если ширина окна меньше 600 -- то кнопки буду сверх и тогда: ширину туду до размера окна, а высоту -- (высота экрана - размер кнопок ) + Если размер меньше 600 -- убираем внешние отступы и убираем скругление всех углов
+
+
+        3. В конце -- возвращается "select" вместе с объектом. В родителе вызывается из стора метод, которому передается этот объект.
+      */
+    }
   }
 };
 </script>
@@ -70,7 +93,9 @@ export default {
 /* 
 Category -- как бы "вторая стадия пониманя" -- это условное разделение важности Todo по системе "золото, серебро и бронза". 
  */
-
+.todo__selected {
+  // visibility: hidden;
+}
 .todo {
   background: rgb(140, 166, 186);
   padding: 0.25rem;
@@ -96,6 +121,11 @@ Category -- как бы "вторая стадия пониманя" -- это �
     left: -20%;
     transform: rotate(-45deg);
   }
+  .todo_head {
+    background: linear-gradient(#fff, #fff) content-box,
+      linear-gradient(var(--color0), var(--color1)) padding-box,
+      linear-gradient(#fff, #dbdbdb) border-box;
+  }
 }
 .todo_head {
   display: flex;
@@ -117,6 +147,7 @@ Category -- как бы "вторая стадия пониманя" -- это �
   h2 {
     font-weight: 300;
     margin: 0.1rem;
+    padding-bottom: 0.2rem;
   }
 }
 .todo_head::after {

@@ -3,7 +3,12 @@
     <h1>Page for tests</h1>
 
     <ul>
-      <li>{{blaa}}</li>
+      <li>
+      
+
+
+
+      </li>
       <li>{{bla()}}</li>
     </ul>
   </div>
