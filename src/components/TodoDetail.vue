@@ -1,7 +1,7 @@
 <template>
   <transition @enter="handleEnter" @leave="handleLeave">
-    <div class="todo-detail" v-if="selected">
-      <todo :todo="selected.todo" :active="true" @close="unselectTodo" />
+    <div class="todo-detail" v-if="selected" :style="style" @click="unselectTodo">
+      <todo :todo="selected.todo" />
     </div>
   </transition>
 </template>
@@ -14,7 +14,20 @@ export default {
     Todo
   },
   computed: {
-    ...mapState(["selected"])
+    ...mapState(["selected", "unselect"]),
+    style() {
+      return {
+        "--left": `${
+          this.selected.rect.appWidth > 1100
+            ? (this.selected.rect.appWidth - 1100) / 2
+            : 0
+        }px`,
+        "--width": `${this.selected.rect.appWidth > 1100 ? "980px" : "100%"}`
+      };
+    }
+  },
+  data() {
+    return {};
   },
   methods: {
     ...mapMutations(["unselectTodo"]),
@@ -32,6 +45,8 @@ export default {
       setTimeout(() => {
         Object.assign(el.style, {
           top: 0,
+          // top: `${(this.selected.rect.appHeight - this.selected.rect.height) /
+          //   2}px`,
           left: 0,
           width: `${this.selected.rect.appWidth}px`,
           height: `${this.selected.rect.appHeight}px`
@@ -42,8 +57,8 @@ export default {
       Object.assign(el.style, {
         top: 0,
         left: 0,
-        width: `${this.unselect.rect.appWidth}px `,
-        height: `${this.unselect.rect.appHeight}px `
+        width: `${this.unselect.rect.appWidth}px`,
+        height: `${this.unselect.rect.appHeight}px`
       });
       setTimeout(() => {
         Object.assign(el.style, {
@@ -61,12 +76,13 @@ export default {
 <style lang="scss">
 .todo-detail {
   position: fixed;
-  display: flex;
-  flex-direction: column;
   background: #000;
 
   .todo {
-    margin: 0;
+    margin-top: 50vh;
+    transform: translateY(-75%);
+    margin-left: var(--left);
+    width: var(--width);
   }
 }
 </style>

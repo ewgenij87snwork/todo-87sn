@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     selected: null,
+    unselect: null,
     todos: [
       {
         name: 'First part of Todo',
@@ -212,6 +213,25 @@ export default new Vuex.Store({
           {
             id: 31,
             title: 'And find something other what can I do here...',
+          },
+        ],
+      },
+      {
+        name: 'TODO: 26/05',
+        category: 'I',
+        colors: ['#8a7876', '#32201c'],
+        tasks: [
+          {
+            title: 'Make a return button',
+            done: false,
+          },
+          {
+            title: 'Set the size and position of TodoDetail via js',
+            done: false,
+          },
+          {
+            title: 'Remove the cursor when hover on all TodoDetail',
+            done: false,
           },
         ],
       },
