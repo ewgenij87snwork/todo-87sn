@@ -6,8 +6,8 @@
     </div>
     <div class="todo_body">
       <ul>
-        <li v-for="task in todoArr" :key="task.title">
-          <task :task="task" />
+        <li v-for="task in todoArr" :key="task.id">
+          <task :todo="todo" :task="task" />
         </li>
       </ul>
       <span>
@@ -97,9 +97,7 @@ Category -- как бы "вторая стадия пониманя" -- это �
   // visibility: hidden;
 }
 .todo {
-  background: rgb(140, 166, 186);
   padding: 0.25rem;
-  cursor: pointer;
   border: solid 0.25rem transparent;
   border-radius: 2rem;
   border-bottom-right-radius: 0px;
@@ -195,16 +193,15 @@ Category -- как бы "вторая стадия пониманя" -- это �
 .todo_body {
   line-height: 1.44;
   position: relative;
-  li {
+  padding-top: 1rem;
+  li > .task {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
     position: relative;
   }
-  li:first-of-type {
-    margin-top: 1rem;
-  }
-  li:first-of-type::before {
+
+  li:first-of-type::before > .task {
     content: "";
     position: absolute;
     top: 0;
@@ -215,28 +212,27 @@ Category -- как бы "вторая стадия пониманя" -- это �
     border-top: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 1);
   }
-  li:last-of-type {
+  li:last-of-type > .task {
     border-bottom: none;
     box-shadow: none;
   }
-  span {
-    position: absolute;
-    right: -2px;
-    bottom: -2px;
-    line-height: 1;
-    border-radius: 50%;
-    height: 20px;
-    width: 20px;
-
-    i {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      font-size: 14px;
-      color: transparent;
-      transition: all 0.3s ease;
-    }
-  }
+}
+.todo_body > span {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  line-height: 1;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+.todo_body > span > i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 14px;
+  color: transparent;
+  transition: all 0.3s ease;
 }
 </style>

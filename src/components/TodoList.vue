@@ -40,5 +40,6 @@ export default {
 }
 .todo-list > ul > li {
   height: 100%;
+  cursor: pointer;
 }
 </style>

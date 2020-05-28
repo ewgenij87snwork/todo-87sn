@@ -1,7 +1,26 @@
 <template>
   <transition @enter="handleEnter" @leave="handleLeave">
-    <div class="todo-detail" v-if="selected" :style="style" @click="unselectTodo">
-      <todo :todo="selected.todo" />
+    <div class="todo-detail" v-if="selected" :style="style">
+      <h1 style="color: white; cursor: pointer" @click="unselectTodo">back</h1>
+      <todo :todo="selected.todo" :active="true" />
+      <div class="buttons">
+        <!-- 
+          Две категории кнопок: при наведении и отдельные
+          1. При наведении:
+            - на заголовок -- в конце текста "карандаш". 
+              -- При клике -- курсор в конце слова и возможность редактировать (innerText?) и 2 кнопки в той же строчке: вперед, назад и отбивка текста справа на ширину этих кнопок. 
+              -- Делается через массив с добавлением слов -- т.е. после каждого пробельного символа занесение элемента массива. 
+              -- Если достигнут конец массива -- кнопка "вперед" -- неактивная. 
+              -- При потере фокуса: данные остаются и кнопки стают невидимыми
+            - на таски -- в конце текста карандаш и корзина
+          2. Отдельные кнопки:
+            - шаг назад
+            - Save & back 
+            - шаг вперед
+              --после появления тудуДетаил выезжают над самой туду.
+              -- при прокрутке вниз на они стают фиксированными к верху экрана
+        -->
+      </div>
     </div>
   </transition>
 </template>
@@ -31,10 +50,6 @@ export default {
   },
   methods: {
     ...mapMutations(["unselectTodo"]),
-    /* Сделать условия стилизации (размещения) Todo. ... По центру должно быть и справа место под размер кнопок редактирования и при дисплеях <600 -- кнопки редактирования вверху
-
-      
-       */
     handleEnter(el) {
       Object.assign(el.style, {
         top: `${this.selected.rect.top}px`,
@@ -45,8 +60,6 @@ export default {
       setTimeout(() => {
         Object.assign(el.style, {
           top: 0,
-          // top: `${(this.selected.rect.appHeight - this.selected.rect.height) /
-          //   2}px`,
           left: 0,
           width: `${this.selected.rect.appWidth}px`,
           height: `${this.selected.rect.appHeight}px`
