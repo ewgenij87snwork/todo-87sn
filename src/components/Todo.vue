@@ -10,7 +10,7 @@
           <task :todo="todo" :task="task" />
         </li>
       </ul>
-      <span>
+      <span v-if="!selected">
         <!-- <i class="fal fa-angle-double-down"></i> -->
         <i class="fas fa-chevron-down"></i>
       </span>

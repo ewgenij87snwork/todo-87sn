@@ -68,15 +68,19 @@ export default {
   background: #fff;
 }
 .task label:after {
+  font: normal normal normal 11px/1 "Font Awesome 5 Free";
   content: "\f00c";
-  position: relative;
+  font-weight: 900;
+  position: absolute;
+  top: 8px;
+  left: 16px;
   display: none;
   margin-right: -18px;
+
   width: 10px;
   height: 10px;
   padding: 4px;
   border-radius: 5px;
-  font: normal normal normal 11px/1 FontAwesome;
   color: #fff;
   background-color: #ccc;
   float: left;
@@ -95,7 +99,7 @@ export default {
   line-height: 1;
 }
 .task_delete:active {
-  transform: scale(1.3);
+  transform: scale(1.15);
 }
 .fade-leave-to,
 .fade-enter {
