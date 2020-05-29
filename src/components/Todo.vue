@@ -199,16 +199,21 @@ Category -- как бы "вторая стадия пониманя" -- это �
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
     position: relative;
+    // &:last-of-type {
+    //   border-bottom: none;
+    //   box-shadow: none;
+    //   color: teal;
+    // }
   }
 
   li:first-of-type::before > .task {
-    content: "";
+    content: "йййй";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 0;
-    z-index: 0;
+    z-index: 100;
     border-top: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 1);
   }

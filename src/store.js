@@ -290,6 +290,12 @@ export default new Vuex.Store({
             done: true,
             deleted: false,
           },
+          {
+            title:
+              "In mobile don't display symbol 'checked'. And must be remove line after last task. And make some expirement with 'will-change' (csss) ",
+            done: false,
+            deleted: false,
+          },
         ],
       },
     ],
