@@ -282,7 +282,7 @@ export default new Vuex.Store({
           {
             title:
               'Make "checked"/"not checked" in one line when many symbols in string',
-            done: false,
+            done: true,
             deleted: false,
           },
           {
@@ -292,7 +292,35 @@ export default new Vuex.Store({
           },
           {
             title:
-              "In mobile don't display symbol 'checked'. And must be remove line after last task. And make some expirement with 'will-change' (csss) ",
+              "In mobile don't display symbol 'checked'. And must be remove line after last task. And make some expirement with 'will-change' (scss). In mobile don't display symbol 'checked'.",
+            done: true,
+            deleted: false,
+          },
+        ],
+      },
+      {
+        name: 'TODO: 29/05',
+        category: 'I',
+        colors: ['#8a7876', '#32201c'],
+        tasks: [
+          {
+            title: 'In mobile display selected Todo does not fit in height',
+            done: false,
+            deleted: false,
+          },
+          {
+            title: 'Make editing Tasks',
+            done: false,
+            deleted: false,
+          },
+          {
+            title: 'Make editing Title',
+            done: true,
+            deleted: false,
+          },
+          {
+            title:
+              "In mobile don't display symbol 'checked'. And must be remove line after last task. And make some expirement with 'will-change' (scss). In mobile don't display symbol 'checked'. And must be remove line after last task. And make some expirement with 'will-change' (scss).",
             done: false,
             deleted: false,
           },
