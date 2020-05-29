@@ -36,7 +36,10 @@ export default {
     ...mapState(["selected"]),
     todoArr() {
       return this.selected
-        ? this.todo.tasks.slice(0, this.todo.tasks.length)
+        ? this.todo.tasks.slice(
+            0,
+            this.todo.tasks.filter(task => !task.deleted).length
+          )
         : this.todo.tasks.slice(0, 2);
     }
   },
