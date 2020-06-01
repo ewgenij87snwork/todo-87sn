@@ -36,11 +36,6 @@ export default {
     ...mapState(["selected", "unselect"]),
     style() {
       return {
-        "--left": `${
-          this.selected.rect.appWidth > 1100
-            ? (this.selected.rect.appWidth - 1100) / 2
-            : 0
-        }px`,
         "--width": `${this.selected.rect.appWidth > 1100 ? "980px" : "100%"}`
       };
     }
@@ -87,15 +82,46 @@ export default {
 </script>
 
 <style lang="scss">
+.modal-open {
+  overflow: hidden;
+}
+
 .todo-detail {
   position: fixed;
   background: #000;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  padding-bottom: 5rem;
 
   .todo {
-    margin-top: 50vh;
-    transform: translateY(-75%);
-    margin-left: var(--left);
+    // flex: 1;
+    border-radius: 1.4rem;
+    border-bottom-right-radius: 0px;
+    // position: relative;
+    // top: 50%;
+    // transform: translateY(-75%);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
     width: var(--width);
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .todo_head {
+    margin-bottom: 0.25rem;
+    background-color: #fff;
+  }
+  .todo_body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
   }
 }
 </style>

@@ -113,7 +113,7 @@ export default {
   border-radius: 1.5rem;
   padding: 0.25rem;
   margin: -0.5rem;
-  background: linear-gradient(#fff, #f1f1f1) content-box,
+  background: linear-gradient(#fff, #fff) content-box,
     linear-gradient(var(--color0), var(--color1)) padding-box,
     linear-gradient(#fff, #dbdbdb) border-box;
   text-align: center;
@@ -139,7 +139,7 @@ export default {
   margin-left: -0.25rem;
   height: 2.5rem;
   width: 2.5rem;
-  box-shadow: inset 0 0 1px 1px #efefef, inset 0 1rem grba(#000, 0.1);
+  box-shadow: inset 0 0 1px 1px #efefef, inset 0 1rem grba(#000, 0);
   background: linear-gradient(var(--color1), var(--color0)) padding-box,
     linear-gradient(#cecdcd, #fff) border-box;
   color: #e2e8eb;
@@ -152,13 +152,13 @@ export default {
 .todo_head::before {
   content: "";
   position: absolute;
-  left: -0.25rem;
+  left: -0.4rem;
   top: -0.25rem;
   width: 3rem;
   height: 3rem;
   border-radius: 0.25rem;
   transform: rotate(45deg);
-  box-shadow: 0 0 7px rgba(#000, 0.2);
+  box-shadow: 0 0 7px rgba(#000, 0.5);
   background: linear-gradient(
     -45deg,
     transparent calc(50% - 1.5rem),
@@ -166,12 +166,14 @@ export default {
     #fff calc(50% + 1.5rem),
     transparent 0
   );
+  z-index: 0;
 }
 
 .todo_body {
   line-height: 1.44;
   position: relative;
   padding-top: 1rem;
+  padding-bottom: 1rem;
   li > .task {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid #ccc;

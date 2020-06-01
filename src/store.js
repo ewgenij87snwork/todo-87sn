@@ -333,10 +333,12 @@ export default new Vuex.Store({
     selectTodo(state, selected) {
       state.selected = selected;
       state.unselect = null;
+      document.body.classList.add('modal-open');
     },
     unselectTodo(state) {
       state.unselect = state.selected;
       state.selected = null;
+      document.body.classList.remove('modal-open');
     },
     deleteTask(_, { task }) {
       task.deleted = true;
