@@ -49,15 +49,15 @@ export default {
       Object.assign(el.style, {
         top: `${this.selected.rect.top}px`,
         left: `${this.selected.rect.left}px`,
-        width: `${this.selected.rect.width}px`,
-        height: `${this.selected.rect.height}px`
+        width: `${this.selected.rect.width}px`
+        // height: `${this.selected.rect.height}px`
       });
       setTimeout(() => {
         Object.assign(el.style, {
           top: 0,
           left: 0,
-          width: `${this.selected.rect.appWidth}px`,
-          height: `${this.selected.rect.appHeight}px`
+          width: `${this.selected.rect.appWidth}px`
+          // height: `${this.selected.rect.appHeight}px`
         });
       }, 0);
     },
@@ -65,8 +65,8 @@ export default {
       Object.assign(el.style, {
         top: 0,
         left: 0,
-        width: `${this.unselect.rect.appWidth}px`,
-        height: `${this.unselect.rect.appHeight}px`
+        width: `${this.unselect.rect.appWidth}px`
+        // height: `${this.unselect.rect.appHeight}px`
       });
       setTimeout(() => {
         Object.assign(el.style, {
@@ -92,27 +92,20 @@ export default {
   display: flex;
   flex-direction: column;
   top: 0;
-  bottom: 0px;
+  bottom: 0;
   left: 0;
-  right: 0;
-  padding-bottom: 5rem;
 
   .todo {
-    // flex: 1;
     border-radius: 1.4rem;
     border-bottom-right-radius: 0px;
-    // position: relative;
-    // top: 50%;
-    // transform: translateY(-75%);
+    border-bottom-left-radius: 0px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
     width: var(--width);
-    height: 80vh;
-    overflow: hidden;
-    position: relative;
     display: flex;
     flex-direction: column;
+    height: calc(100% - 2.25rem);
   }
   .todo_head {
     margin-bottom: 0.25rem;
@@ -121,7 +114,6 @@ export default {
   .todo_body {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 100%;
   }
 }
 </style>

@@ -63,7 +63,7 @@ export default {
       rect.width = elRect.width;
       rect.height = elRect.height;
       rect.appWidth = appRect.width;
-      rect.appHeight = appRect.height;
+      // rect.appHeight = appRect.height;
       this.$emit("select", { rect, todo });
     }
   }
