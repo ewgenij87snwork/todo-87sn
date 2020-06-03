@@ -1,8 +1,16 @@
 <template>
   <transition name="fade">
     <div class="task" v-if="!task.deleted">
-      <input :id="id" type="checkbox" v-model="task.done" />
-      <label :for="id" :style="style">{{task.title}}</label>
+      <input :id="id" v-model="task.done" type="checkbox" />
+      <label :for="id" :style="style">
+        {{!task.editing ? editableTask : null}}
+        <input
+          type="text"
+          v-if="task.editing"
+          v-model="editableTask"
+          ref="input"
+        />
+      </label>
       <!-- 
         Auso! 
         - Сделать чтобы вмещалось выбранное туду по высоте
@@ -12,7 +20,7 @@
       -->
       <div class="task-buttons_wrap">
         <span class="task-buttons" v-show="selected">
-          <i class="fas fa-pencil-alt"></i>
+          <i class="fas fa-pencil-alt" @click="editTask"></i>
         </span>
         <span class="task-buttons" v-show="selected">
           <i class="fas fa-reply"></i>
@@ -42,6 +50,8 @@ export default {
   },
   data() {
     return {
+      bla: "bla",
+      editableTask: this.task.title,
       id: `task-${gId++}`
     };
   },
@@ -52,7 +62,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["deleteTask"])
+    ...mapMutations(["deleteTask"]),
+    editTask() {
+      this.task.editing = true;
+      this.editableTask = this.task.title;
+      this.$nextTick(() => {
+        this.$refs["input"].focus();
+      });
+      console.log(this.task.title);
+    }
   }
 };
 </script>
@@ -63,12 +81,14 @@ export default {
   padding: 12px 0;
   font-size: 16px;
 }
-.task input {
+.task input[type="checkbox"] {
   display: none;
 }
 .task label {
   flex: 1;
   line-height: 20px;
+  font-size: 1rem;
+  display: flex;
 }
 .task label:before,
 .task label:after {
@@ -103,11 +123,19 @@ export default {
   background-color: #ccc;
   float: left;
 }
-.task input:checked + label:after {
+.task input[type="checkbox"]:checked + label:after {
   display: var(--selected);
 }
-.task input:checked + label {
+.task input[type="checkbox"]:checked + label {
   color: #9796a0;
+}
+.task input[type="text"] {
+  font-size: 1rem;
+  width: 100%;
+  line-height: 20px;
+  outline: none;
+  border: none;
+  background: #f7f7f7;
 }
 .task-buttons {
   display: var(--selected);

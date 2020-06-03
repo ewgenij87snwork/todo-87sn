@@ -92,10 +92,13 @@ export default {
   display: flex;
   flex-direction: column;
   top: 0;
-  bottom: 0;
   left: 0;
+  // Эти два свойсвтва добавляются для мобильных экранов. Когда прокручиваешь вниз и достигаешь конца данный контейнер как бы поднимается вверх и делает видимым todo-list
+  bottom: -200px;
+  padding-bottom: 200px;
 
   .todo {
+    background: #f7f7f7;
     border-radius: 1.4rem;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -105,11 +108,11 @@ export default {
     width: var(--width);
     display: flex;
     flex-direction: column;
-    height: calc(100% - 2.25rem);
+    height: calc(100% - 2.3rem);
   }
   .todo_head {
-    margin-bottom: 0.25rem;
     background-color: #fff;
+    margin-bottom: 0.25rem;
   }
   .todo_body {
     overflow-y: auto;

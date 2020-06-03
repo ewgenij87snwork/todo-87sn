@@ -5,11 +5,7 @@
       <span class="bookmark"></span>
     </div>
     <div class="todo_body">
-      <ul>
-        <li v-for="task in todoArr" :key="task.id">
-          <task :todo="todo" :task="task" />
-        </li>
-      </ul>
+      <task :todo="todo" :task="task" v-for="task in todoArr" :key="task.id" />
       <span v-if="!selected">
         <!-- <i class="fal fa-angle-double-down"></i> -->
         <i class="fas fa-chevron-down"></i>
@@ -171,7 +167,7 @@ export default {
   position: relative;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  li > .task {
+  .task {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
@@ -183,18 +179,18 @@ export default {
     // }
   }
 
-  li:first-of-type::before > .task {
-    content: "йййй";
+  .task:first-of-type::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 0;
-    z-index: 100;
+    z-index: 0;
     border-top: 1px solid #ccc;
     box-shadow: 0 1px 1px rgba(255, 255, 255, 1);
   }
-  li:last-of-type > .task {
+  .task:last-of-type {
     border-bottom: none;
     box-shadow: none;
   }
