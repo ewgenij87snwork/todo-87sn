@@ -388,5 +388,9 @@ export default new Vuex.Store({
     deleteTask(_, { task }) {
       task.deleted = true;
     },
+    saveTask(_, { task }, editableTask) {
+      task.title = editableTask;
+      task.editing = false;
+    },
   },
 });

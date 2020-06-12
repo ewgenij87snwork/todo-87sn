@@ -1,26 +1,27 @@
 <template>
   <transition name="fade">
     <div class="task" v-if="!task.deleted">
-      <input :id="id" v-model="task.done" type="checkbox" />
+      <input :id="id" v-model="task.done" ref="checkboxTask" type="checkbox" />
       <label :for="id" :style="style">
         {{!task.editing ? editableTask : null}}
+        <!-- when clicnk on pencil -->
         <input
           type="text"
           v-if="task.editing"
           v-model="editableTask"
-          ref="input"
+          ref="editingInput"
+          @blur="saveTask({task}, editableTask)"
         />
       </label>
       <!-- 
         Auso! 
-        - Сделать чтобы вмещалось выбранное туду по высоте
-            --- пока одна зацепка: на body по selected навешивать position:fixed...
-        - Настроить редактирование по нажатию на заголовок или на карандаш. Возможно во vue это делается как-то через v-model или аналог InnerText
+
         - Связать редактирование с созданием массива по отдельно взятому пункту... Массив-буффер: конечный результат записывает в: 1.html; 2.state; 3.localStorage
       -->
       <div class="task-buttons_wrap">
         <span class="task-buttons" v-show="selected">
-          <i class="fas fa-pencil-alt" @click="editTask"></i>
+          <i class="far fa-save" v-show="task.editing" @click="saveTask({ task }, editableTask)"></i>
+          <i class="fas fa-pencil-alt" v-show="!task.editing" @click="editTask"></i>
         </span>
         <span class="task-buttons" v-show="selected">
           <i class="fas fa-reply"></i>
@@ -38,6 +39,7 @@
   </transition>
 </template>
 
+  // -------------------------------------------------------------------------------------------------------
 <script>
 import { mapMutations, mapState } from "vuex";
 let gId = 1;
@@ -50,31 +52,29 @@ export default {
   },
   data() {
     return {
-      bla: "bla",
       editableTask: this.task.title,
       id: `task-${gId++}`
     };
   },
   computed: {
-    ...mapState(["selected"]),
+    ...mapState(["selected", "unselect"]),
     style() {
       return { "--selected": this.selected ? "inline-block" : "none" };
     }
   },
   methods: {
-    ...mapMutations(["deleteTask"]),
+    ...mapMutations(["deleteTask", "saveTask"]),
     editTask() {
       this.task.editing = true;
-      this.editableTask = this.task.title;
+      this.task.title = this.editableTask;
       this.$nextTick(() => {
-        this.$refs["input"].focus();
+        this.$refs["editingInput"].focus();
       });
-      console.log(this.task.title);
     }
   }
 };
 </script>
-
+// -------------------------------------------------------------------------------------------------------
 <style lang='scss'>
 .task {
   display: flex;
