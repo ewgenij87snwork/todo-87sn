@@ -3,14 +3,14 @@
     <div class="task" v-if="!task.deleted">
       <input :id="id" v-model="task.done" ref="checkboxTask" type="checkbox" />
       <label :for="id" :style="style">
-        {{!task.editing ? editableTask : null}}
+        {{!task.editing ? task.title : null}}
         <!-- when clicnk on pencil -->
         <input
           type="text"
           v-if="task.editing"
-          v-model="editableTask"
+          v-model="title"
           ref="editingInput"
-          @blur="saveTask({task}, editableTask)"
+          @blur="saveTask({task})"
         />
       </label>
       <!-- 
@@ -52,7 +52,6 @@ export default {
   },
   data() {
     return {
-      editableTask: this.task.title,
       id: `task-${gId++}`
     };
   },
@@ -60,13 +59,20 @@ export default {
     ...mapState(["selected", "unselect"]),
     style() {
       return { "--selected": this.selected ? "inline-block" : "none" };
+    },
+    title: {
+      get() {
+        return this.task.title;
+      },
+      set(value) {
+        this.$store.commit("updateTitle", { task: this.task, value: value });
+      }
     }
   },
   methods: {
     ...mapMutations(["deleteTask", "saveTask"]),
     editTask() {
       this.task.editing = true;
-      this.task.title = this.editableTask;
       this.$nextTick(() => {
         this.$refs["editingInput"].focus();
       });
