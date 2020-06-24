@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     selected: null,
     unselect: null,
+    bufferTaskTitle: [],
     todos: [
       {
         name: 'First part of Todo',
@@ -385,14 +386,20 @@ export default new Vuex.Store({
       state.selected = null;
       document.body.classList.remove('modal-open');
     },
+
     deleteTask(_, { task }) {
       task.deleted = true;
+    },
+    editTask(_, { task }) {
+      task.editing = true;
     },
     saveTask(_, { task }) {
       task.editing = false;
     },
-    updateTitle(_, { task, value }) {
-      task.title = value;
+    updateTask(_, state, { task, value }) {
+      state.bufferTaskTitle = value;
+      task.title = state.bufferTaskTitle;
     },
+    backwordTaskTitle() {},
   },
 });

@@ -21,7 +21,7 @@
       <div class="task-buttons_wrap">
         <span class="task-buttons" v-show="selected">
           <i class="far fa-save" v-show="task.editing" @click="saveTask({ task }, editableTask)"></i>
-          <i class="fas fa-pencil-alt" v-show="!task.editing" @click="editTask"></i>
+          <i class="fas fa-pencil-alt" v-show="!task.editing" @click="editTask({ task })"></i>
         </span>
         <span class="task-buttons" v-show="selected">
           <i class="fas fa-reply"></i>
@@ -65,18 +65,18 @@ export default {
         return this.task.title;
       },
       set(value) {
-        this.$store.commit("updateTitle", { task: this.task, value: value });
+        this.$store.commit("updateTask", { task: this.task, value: value });
       }
     }
   },
   methods: {
-    ...mapMutations(["deleteTask", "saveTask"]),
-    editTask() {
-      this.task.editing = true;
-      this.$nextTick(() => {
-        this.$refs["editingInput"].focus();
-      });
-    }
+    ...mapMutations(["deleteTask", "saveTask", "editTask"])
+    // Как-то сделать фокус при нажатии на "карандаш" -- или вторым обработчиком повесить на @click или в actions разобраться как предавать $refs
+    // inputFocus() {
+    //   this.$nextTick(() => {
+    //     this.$refs["editingInput"].focus();
+    //   });
+    // }
   }
 };
 </script>
@@ -95,6 +95,7 @@ export default {
   line-height: 20px;
   font-size: 1rem;
   display: flex;
+  align-items: baseline;
 }
 .task label:before,
 .task label:after {
@@ -137,8 +138,8 @@ export default {
 }
 .task input[type="text"] {
   font-size: 1rem;
-  width: 100%;
   line-height: 20px;
+  width: 90%;
   outline: none;
   border: none;
   background: #f7f7f7;
